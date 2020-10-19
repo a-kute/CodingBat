@@ -48,6 +48,43 @@ public class SolutionsOCT19 {
 
     }
 
+    public int sortaSum(int a, int b) {
+        int sum = a+b;
+        return (sum >= 10 && sum<= 19) ? 20 : sum;
+
+    }
+
+    public String alarmClock(int day, boolean vacation) {
+        boolean weekday = (day==0||day == 6) ? false :true;
+        if (weekday&&vacation) {
+            return "10:00";
+        }
+        if (!weekday && vacation){
+            return "off";
+        }
+
+        if (weekday && !vacation) {
+            return "7:00";
+        }
+        return "10:00";
+
+    }
+
+    public boolean love6(int a, int b) {
+        if(a==6||b==6) {
+            return true;
+        }
+        if((a+b==6)||(a-b==6)||(b-a ==6)) {
+            return true;
+
+        }
+        return false;
+    }
+
+
+
+
+
 
 
 
@@ -55,8 +92,9 @@ public class SolutionsOCT19 {
 
     public static void main (String ... args){
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int result = sol.caughtSpeeding(60, false);
+        String result = sol.alarmClock(0,false);
         System.out.println(result);
+
 
     }
 }
