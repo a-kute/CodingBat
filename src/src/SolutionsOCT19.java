@@ -81,6 +81,102 @@ public class SolutionsOCT19 {
         return false;
     }
 
+    public int arrayCount9(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 9) {
+                count ++;
+            }
+        }
+        return count;
+
+    }
+
+    public boolean arrayFront9(int[] nums) {
+        for (int i = 0; i<nums.length && i<4; i++) {
+            if (nums[i] == 9) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean array123(int[] nums) {
+        for (int i = 0; i < nums.length-2; i++) {
+            if (nums[i]==1 && nums[i+1]==2 && nums[i+2]==3) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public int stringMatch(String a, String b) {
+        int count = 0;
+        for (int i = 0; i < a.length()-1 && i < b.length()-1 ;i++) {
+            if(a.substring(i,i+2).equals(b.substring(i,i+2))) {
+                count ++;
+            }
+        }
+        return count;
+
+    }
+
+
+    public int loneSum(int a, int b, int c) {
+        if (a == b) {
+            if (a==c) {
+                return 0;
+            }
+            return c;
+        }
+        if (a==c) {
+            return b;
+        }
+        if(b==c) {
+            return a;
+        }
+        return a+b+c;
+
+    }
+
+    public int luckySum(int a, int b, int c) {
+        if (a == 13) {
+            return 0;
+        }
+        if( b== 13) {
+            return a;
+        }
+        if (c==13) {
+            return a+b;
+
+        }
+        return a+b+c;
+
+    }
+
+    public int noTeenSum(int a, int b, int c) {
+        a = fixTeen(a);
+        b = fixTeen(b);
+        c = fixTeen(c);
+        return a+b+c;
+    }
+
+    public int fixTeen(int n) {
+        if (n>=13 && n<15) return 0 ;
+        if (n>=17 && n<=19) return 0;
+        return n;
+    }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,6 +190,9 @@ public class SolutionsOCT19 {
         SolutionsOCT19 sol = new SolutionsOCT19();
         String result = sol.alarmClock(0,false);
         System.out.println(result);
+        String a = "HI";
+        String b = "HI";
+        System.out.println(a.substring(0,1).equals (b.substring(0,1)));
 
 
     }
