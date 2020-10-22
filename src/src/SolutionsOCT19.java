@@ -169,30 +169,81 @@ public class SolutionsOCT19 {
         return n;
     }
 
+    public String stringX(String str) {
+       String result = "";
+       hello: for (int i = 0; i< str.length();i++) {
+           if(str.charAt(i)=='x' &&  (i !=0) && (i != str.length()-1)){
+               continue hello;
+           }
+           result += str.charAt(i);
+       }
+    return result;
+
+    }
+
+    public String altPairs(String str) {
+        String result = "";
+        for (int i = 0,j = 1; i < str.length(); i = (j==1) ? i+1 : i + 3, j = (j==1) ? 0 : 1) {
+            result += str.charAt(i);
+
+        }
+        return result;
+
+    }
+
+    public String stringYak(String str) {
+        String result = "";
+        for(int i = 0; i < str.length(); i+=1){
+            if (i+3 < str.length() && str.substring(i,i+3).equals("yak")) {
+                i += 2;
+                continue;
+
+            }
+            result += str.substring(i,i+1);
+        }
+        return result;
+
+    }
+
+    public int array667(int[] nums) {
+
+        int count = 0;
+        for (int i = 0;  nums.length-2 >=i ;i++) {
+            if(nums[i] == 6 && (nums[i+1] == 6 || nums[i+1] == 7))
+                count++;
+        }
+        return count;
+
+    }
+
+    public int roundSum(int a, int b, int c) {
+        return (round10(a)+round10(b)+round10(c));
+
+    }
+
+    public int round10(int num){
+
+        int rightMost = num%10;
+        int result=0;
+        if (num == 0) return 0;
+        if (rightMost<5) {
+            if (num/10 == 0) {
+                return 0;
+            }
+            result = num/10 * 10;
+            return result;
+        }
+        return ((num/10)+1) * 10;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     public static void main (String ... args){
         SolutionsOCT19 sol = new SolutionsOCT19();
-        String result = sol.alarmClock(0,false);
-        System.out.println(result);
-        String a = "HI";
-        String b = "HI";
-        System.out.println(a.substring(0,1).equals (b.substring(0,1)));
+        int hi = sol.array667(new int[] {6,6,2});
+        System.out.println(hi);
+
 
 
     }
