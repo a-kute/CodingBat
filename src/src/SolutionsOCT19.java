@@ -238,6 +238,20 @@ public class SolutionsOCT19 {
 
     }
 
+    public boolean scoresIncreasing(int[] scores) {
+        int x = scores[0];
+        for (int i = 1 ; i <= scores.length-1 ; i++){
+            if (scores[i] >= x) {
+                x = scores[i];
+            } else if (scores[i] < x) return false;
+
+        }
+        return true;
+
+    }
+
+
+
 
     public static void main (String ... args){
         SolutionsOCT19 sol = new SolutionsOCT19();
