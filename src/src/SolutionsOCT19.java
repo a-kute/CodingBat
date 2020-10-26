@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SolutionsOCT19 {
@@ -277,6 +278,69 @@ public class SolutionsOCT19 {
         }
         return false;
     }
+
+    public int max1020(int a, int b) {
+        int a1 = 0;
+        int b1 = 0;
+
+        if (!(a>20 || a < 10) ) a1 = a;
+        if (!(b>20 || b < 10) ) b1 = b;
+
+        return(Math.max(a1,b1));
+
+    }
+
+    public int max1020AlternateSolution(int a, int b) {
+        int max = Math.max(a,b);
+        int min = Math.min(a,b);
+
+        if(max<21 && max>9) return max;
+        if(min<21 && min>9) return min;
+        return 0;
+
+    }
+
+    public boolean stringE(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == 'e') count += 1;
+        }
+        return (count>0 && count <4) ? true : false;
+
+
+    }
+
+    public boolean closeFar(int a, int b, int c) {
+
+        if((Math.abs(b-a)<2) && (Math.abs(c-a)>1) && (Math.abs(b-c)>1)) return true;
+        if ((Math.abs(c-a)<2) && (Math.abs(b-a)>1) && (Math.abs(b-c)>1)) return true;
+        return false;
+
+
+
+    }
+
+    public int blackjack(int a, int b) {
+        if (a >21) a = 0;
+        if(b > 21) b = 0;
+        return Math.max(a,b);
+
+
+    }
+
+    public boolean evenlySpaced(int a, int b, int c) {
+        int[] result = {a,b,c};
+        Arrays.sort(result);
+        return ((Math.abs(result[0]-result[1]) == Math.abs(result[2]-result[1])));
+
+    }
+
+
+
+
+
+
+
 
 
 
