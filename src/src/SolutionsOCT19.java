@@ -334,6 +334,44 @@ public class SolutionsOCT19 {
         return ((Math.abs(result[0]-result[1]) == Math.abs(result[2]-result[1])));
 
     }
+    public int reverse(int x) {
+        String integer = Integer.toString(x);
+        String newInteger ="";
+        if (integer.charAt(0) == '-') {
+            newInteger += "-";
+            integer = integer.substring(1, integer.length());
+        }
+
+        while(integer.length() > 0) {
+            char latestDigit = integer.charAt(integer.length()-1);
+            newInteger += latestDigit;
+            integer = integer.substring(0,integer.length()-1);
+        }
+        try {
+            return Integer.parseInt(newInteger);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+    class Solution {
+        public int reverse(int x) {
+            StringBuilder sb = new StringBuilder();
+            String s = Integer.toString(x);
+            if(x<0) {
+                s = s.substring(1, s.length());
+            }
+            sb.append(s).reverse();
+            if(x<0) sb.append("-",0,1);
+            try {
+                int a = Integer.parseInt(sb.toString());
+                return a;
+            } catch( NumberFormatException e) {
+                return 0;
+            }
+        }
+    }
+
+
 
 
 
@@ -350,8 +388,9 @@ public class SolutionsOCT19 {
 
     public static void main (String ... args){
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int hi = sol.array667(new int[] {6,6,2});
-        System.out.println(hi);
+        int result = sol.reverse(1534236469);
+        System.out.println(result);
+        System.out.println(Integer.MAX_VALUE);
 
 
 
