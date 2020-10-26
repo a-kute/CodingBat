@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class SolutionsOCT19 {
     public String stringBits(String str) {
         String hi = "";
@@ -257,6 +260,25 @@ public class SolutionsOCT19 {
         }
         return result;
     }
+    public List wordsWithoutList(String[] words, int len) {
+        var result = new ArrayList();
+        for (int i = 0; i < words.length; i++) {
+            if(words[i].length() == len) continue;
+            result.add(words[i]);
+
+        }
+        return result;
+    }
+
+    public boolean hasOne(int n) {
+        while (n > 0) {
+            if (n%10 == 1) return true;
+            n /= 10;
+        }
+        return false;
+    }
+
+
 
 
 
