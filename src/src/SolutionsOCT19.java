@@ -371,6 +371,83 @@ public class SolutionsOCT19 {
         }
     }
 
+    public int[] middleWay(int[] a, int[] b) {
+        int [] result = new int [2];
+        result[0] = a[1];
+        result[1] = b[1];
+        return result;
+
+    }
+    public int[] makeEnds(int[] nums) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        result.add(nums[0]);
+        result.add(nums[nums.length-1]);
+        Object[] results = result.toArray();
+        int[] resulting= new int[result.size()];
+        int counter = 0;
+        for (Object a : results) {
+            Integer b = (Integer) a;
+            resulting[counter] = b.intValue();
+            counter++;
+        }
+        return resulting;
+
+    }
+
+    public boolean has23(int[] nums) {
+        for (int i = 0; i < 2; i++) {
+            if(nums[i] == 2 || nums[i] == 3) return true;
+        }
+        return false;
+
+    }
+
+    public boolean no23(int[] nums) {
+        boolean a = true;
+        for (int i = 0; i< 2; i++) {
+            if(nums[i] == 2 || nums[i] == 3) a = false;
+        }
+        return a;
+
+    }
+
+    public int[] makeLast(int[] nums) {
+        int[] result = new int[nums.length*2];
+        result[result.length-1] = nums[nums.length-1];
+        return result;
+
+    }
+
+    public boolean double23(int[] nums) {
+        int two = 0;
+        int three =0;
+
+        for (int i = 0; i < nums.length; i++){
+            if(nums[i] == 2) two++;
+            if(nums[i]==3) three++;
+        }
+
+        return (two==2 || three==2);
+
+    }
+
+        public boolean isPalindrome(int x) {
+            StringBuilder result = new StringBuilder();
+            result.append(Integer.toString(x));
+            result.reverse();
+            System.out.println(result);
+            if(result.toString().equals(Integer.toString(x))) return true;
+            return false;
+
+        }
+
+
+
+
+
+
+
+
 
 
 
