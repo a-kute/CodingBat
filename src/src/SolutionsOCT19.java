@@ -458,6 +458,60 @@ public class SolutionsOCT19 {
 
     }
 
+        public int romanToInt(String s) {
+        int result = 0;
+            while(s.length()>0){
+                if(s.charAt(0) == 'X') {
+                    if (s.length() > 1){
+                        if (s.charAt(1) == 'L') {
+                            result += -10;
+                        } else if (s.charAt(1) == 'C') {
+                            result += -10;
+                        } else {
+                            result += 10;
+                        }
+                } else {
+                        result +=10;
+
+                }
+
+                }
+                if(s.charAt(0) == 'I') {
+                    if (s.length() > 1) {
+                        if (s.charAt(1) == 'V') {
+                            result += -1;
+                        } else if (s.charAt(1) == 'X') {
+                            result += -1;
+                        } else {
+                            result += 1;
+                        }
+                    } else result += 1;
+
+                }
+                if(s.charAt(0) == 'C') {
+                    if (s.length() > 1) {
+                        if (s.charAt(1) == 'D') {
+                            result += -100;
+                        } else if (s.charAt(1) == 'M') {
+                            result += -100;
+                        } else {
+                            result += 100;
+                        }
+                    } else result += 100;
+
+                }
+                if(s.charAt(0) == 'D') result += 500;
+                if(s.charAt(0)== 'M') result +=1000;
+                if(s.charAt(0) == 'L') result += 50;
+                if(s.charAt(0)== 'V') result += 5;
+                s = s.substring(1,s.length());
+
+            }
+            return result;
+
+        }
+
+
 
 
 
@@ -474,34 +528,34 @@ public class SolutionsOCT19 {
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static void main (String ... args){
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int result = sol.reverse(1534236469);
+        int result = sol.romanToInt("MCMXCIV");
         System.out.println(result);
-        System.out.println(Integer.MAX_VALUE);
+        //System.out.println(Integer.MAX_VALUE);
 
 
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
