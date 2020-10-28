@@ -430,8 +430,40 @@ public class SolutionsOCT19 {
         return (two==2 || three==2);
 
     }
+    public int[] fix23(int[] nums) {
+        if(nums[0] == 2 && nums[1] == 3) nums[1] =0;
+        if(nums[1] == 2 && nums[2]==3) nums[2] = 0;
+        return nums;
 
-        public boolean isPalindrome(int x) {
+    }
+    public int start1(int[] a, int[] b) {
+        int result = 0;
+        if(a.length>0 && a[0] ==1) result++;
+        if(b.length >0 &&b[0]==1) result++;
+        return  result;
+
+    }
+
+    public int[] biggerTwo(int[] a, int[] b) {
+        int sum1 = a[0] + a[1];
+        int sum2 = b[0] +b[1];
+        return sum1>=sum2 ? a : b;
+
+    }
+    public int[] makeMiddle(int[] nums) {
+        int[] result = new int[2];
+        result[0] =nums[nums.length/2 - 1];
+        result[1] = nums[nums.length/2];
+        return result;
+
+    }
+
+
+
+
+
+
+    public boolean isPalindrome(int x) {
             StringBuilder result = new StringBuilder();
             result.append(Integer.toString(x));
             result.reverse();
