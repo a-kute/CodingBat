@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -509,7 +510,189 @@ public class SolutionsOCT19 {
             }
             return result;
 
+     }
+
+    public boolean in1To10(int n, boolean outsideMode) {
+        return (outsideMode) ? ((n<2)|| (n>9)) : (n>0 && n < 11) ;
+
+    }
+
+    public boolean specialEleven(int n) {
+        return (n%11 == 0 || n%11 ==1);
+
+    }
+
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length == 0) return "";
+        if(strs.length == 1) return strs[0];
+
+        String first = strs[0];
+        String result = "";
+        int counter = first.length();
+
+
+
+        for (int i = 1; i < strs.length ; i++ ) {
+            if(first.substring(0,counter).isEmpty()) return result;
+            if(strs[i].indexOf(first.substring(0,counter)) !=0){
+                i=0;
+                counter--;
+                result = "";
+                continue;
+            }
+            result = first.substring(0,counter);
         }
+        return result;
+
+
+
+    }
+    public int removeDuplicates(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int counter = i;
+            if (nums[i] == Integer.MAX_VALUE) continue;
+            int current = nums[i];
+
+            hi: while(counter < nums.length-1) {
+                if(nums[counter+1] == Integer.MAX_VALUE){
+                    counter++;
+                    continue hi;
+                }
+
+                if(current == nums[counter+1]){
+                    nums[counter+1] = Integer.MAX_VALUE;
+                }
+                counter++;
+            }
+        }
+        int total = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] != Integer.MAX_VALUE) total++;
+        }
+        return total;
+
+    }
+
+    public int[] plusTwo(int[] a, int[] b) {
+        int[] result = new int[4];
+        result[0] = a[0];
+        result[1] = a[1];
+        result[2] = b[0];
+        result[3] = b[1];
+        return result;
+
+
+
+    }
+    public int[] swapEnds(int[] nums) {
+        if (nums.length == 1) return  nums;
+        int holder = nums[0];
+        nums[0] = nums[nums.length-1];
+        nums[nums.length-1] = holder;
+        return nums;
+
+    }
+
+    public int[] midThree(int[] nums) {
+        int[] result = new int[3];
+        result[0] = nums[nums.length/2-1];
+        result[1] = nums[nums.length/2];
+        result[2] = nums[nums.length/2+1];
+        return  result;
+
+    }
+
+    public int maxTriple(int[] nums) {
+       int max = nums[0] > nums[nums.length-1] ? nums[0]: nums[nums.length-1];
+       return max > nums[nums.length/2] ? max : nums[nums.length/2];
+
+
+    }
+
+    public int[] fix34(int[] nums) {
+        int first3;
+        int valueAfter3;
+        int first4 =1 ;
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i] == 3 && nums[i+1]!=4) {
+                first3 = i;
+                valueAfter3 = nums[i+1];
+                for (int j =1 ; j < nums.length; j++) {
+                    if(nums[j] == 4 && nums[j-1]!=3) {
+                        first4 = j;
+                        break;
+                    }
+                }
+                nums[first3+1] = nums[first4];
+                nums[first4] = valueAfter3;
+
+
+            }
+        }
+        return nums;
+
+    }
+
+    public int[] fix45(int[] nums) {
+        int first3;
+        int valueAfter3;
+        int first4 =1 ;
+        for (int i = 0; i < nums.length-1; i++) {
+            if (nums[i] == 4 && nums[i+1]!=5) {
+                first3 = i;
+                valueAfter3 = nums[i+1];
+                for (int j =0 ; j < nums.length; j++) {
+                    if(i == 1|| j==0) {
+                        if(nums[j] == 5) {
+                            first4 = j;
+                            break;
+                        }
+                    }
+                    if(nums[j] == 5 && nums[j-1]!=4) {
+                        first4 = j;
+                        break;
+                    }
+                }
+                nums[first3+1] = nums[first4];
+                nums[first4] = valueAfter3;
+
+
+            }
+        }
+        return nums;
+
+    }
+
+    public int removeElement(int[] nums, int val) {
+        int counter = 0;
+        int i = 0;
+        while(i< nums.length-counter) {
+            if (nums[i] != val) {
+                i++;
+                continue;
+            }
+            if (nums[i] == val) {
+                int placeHolder = nums[nums.length-counter-1];
+                counter++;
+                nums[i] = placeHolder;
+                continue;
+            }
+
+        }
+        return nums.length-counter;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -530,8 +713,8 @@ public class SolutionsOCT19 {
 
     public static void main (String ... args){
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int result = sol.romanToInt("MCMXCIV");
-        System.out.println(result);
+        int[] hi = {3,2,2,3};
+        System.out.println(sol.removeElement(hi,3));
         //System.out.println(Integer.MAX_VALUE);
 
 
