@@ -710,12 +710,108 @@ public class SolutionsOCT19 {
 
         }
 
+    public boolean more20(int n) {
+        return (n%20==1 || n%20 ==2);
+
+    }
+
+    public boolean old35(int n) {
+        return (n%3==0 ^ n%5==0 );
+
+    }
+
+    public boolean less20(int n) {
+        return (n%20== 19 || n%20==18);
+
+    }
+
+    public boolean nearTen(int num) {
+        return(num%10 > 7 || num%10 <3);
+
+    }
+
+    public int teenSum(int a, int b) {
+        boolean isTeen = ((a >12) && (a<20)) ||  ((b >12) && (b<20)) ? true: false;
+        return isTeen ? 19 : a+b ;
+
+    }
+
+    public boolean canBalance(int[] nums) {
+        int counter = 0;
+        int length = nums.length;
+        int sum1;
+        int sum2;
+
+        while (counter < length-1) {
+            sum1 = 0;
+            sum2= 0;
+
+            for (int i = 0; i < counter+1; i++){
+                sum1 += nums[i];
+            }
+            for(int i = counter +1 ; i< length; i++) {
+                sum2 += nums[i];
+            }
+            if(sum1==sum2) return true;
+            counter++;
+        }
+        return false;
+
+
+    }
+
+    public boolean linearIn(int[] outer, int[] inner) {
+
+        for (int a : inner) {
+            if(Arrays.binarySearch(outer,a) <0) return false;
+        }
+        return true;
+
+    }
+
+    public int[] squareUp(int n) {
+        int[] result = new int[n*n];
+        for(int i = n; i>0;i--){
+            for (int j = n-i;j >= 0; j--) {
+                result[result.length-(n*j)-i] = i;
+            }
+        }
+        return result;
+    }
+
+    public int[] seriesUp(int n) {
+        int[] result = new int[n*(n+1)/2];
+        int counter = 0;
+        for(int i = n; i > 0 ; i--){
+            for (int j = i ; j > 0; j--) {
+                result[result.length-1-counter] = j;
+                counter++;
+            }
+        }
+        return result;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     public static void main (String ... args){
+       // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int[] hi = {3,2,2,3};
-        System.out.println(sol.removeElement(hi,3));
+        int[] hi = {1,2,3,1,0,2,3};
+
         //System.out.println(Integer.MAX_VALUE);
+
+        System.out.println(sol.squareUp(3).toString());
 
 
 
