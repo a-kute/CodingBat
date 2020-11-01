@@ -793,6 +793,80 @@ public class SolutionsOCT19 {
 
     }
 
+    public int maxMirror(int[] nums) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] >9){
+                sb.append(" ");
+            }
+            sb.append(nums[i]);
+        }
+        String original = sb.toString();
+        String reverse = sb.reverse().toString();
+        int maxLength = 0;
+
+
+        Outer: for(int i = 0; i < original.length(); i++){
+            String current;
+            for (int j =i+1; j <= original.length(); j++) {
+                current = original.substring(i,j);
+                int length = current.length();
+                if (!reverse.contains(current)) continue Outer;
+                if(reverse.contains(current)){
+                    if (length>maxLength) maxLength = length;
+                }
+            }
+        }
+        return maxLength;
+
+    }
+
+    public int countClumps(int[] nums) {
+        int clumps = 0;
+        int counter = 0;
+        while(counter< nums.length-1){
+            int local;
+            if(nums[counter] == nums[counter +1]) {
+                clumps++;
+                local = nums[counter];
+            } else {
+                counter++;
+                if (counter == nums.length) return clumps;
+                continue;
+            }
+            while (nums[counter] == local) {
+                counter++;
+                if (counter == nums.length) return clumps;
+            }
+        }
+        return clumps;
+
+
+    }
+
+    public int maxSpan(int[] nums) {
+        int maxLength = 0;
+        int length;
+        Outer: for(int i =0; i <= nums.length/2; i++) {
+            for (int j = nums.length-1; j >= nums.length/2;j--) {
+                if(nums[j] == nums[i]) {
+                    length = j - i + 1;
+                    if (length > maxLength) {
+                        maxLength = length;
+                        continue Outer;
+                    }
+                }
+            }
+        }
+        return maxLength;
+
+    }
+
+
+
+
+
+
 
 
 
@@ -807,11 +881,11 @@ public class SolutionsOCT19 {
     public static void main (String ... args){
        // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int[] hi = {1,2,3,1,0,2,3};
+        int[] hi = {21, 22, 9, 8, 7, 6, 23, 24, 6, 7, 8, 9, 25, 7, 8, 9};
 
         //System.out.println(Integer.MAX_VALUE);
 
-        System.out.println(sol.squareUp(3).toString());
+        System.out.println(sol.maxMirror(hi));
 
 
 
