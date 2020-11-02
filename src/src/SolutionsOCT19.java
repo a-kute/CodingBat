@@ -867,7 +867,7 @@ public class SolutionsOCT19 {
         int AO = 0;
         int BO = 0;
         str = str.replace("dog","$");
-        str = str.replace(, '$');
+        str = str.replace("cat", "$");
         for (int i = 0; i < str.length(); i++ ) {
             if(str.charAt(i) == '|') AO++;
             if(str.charAt(i) == '$') BO++;
