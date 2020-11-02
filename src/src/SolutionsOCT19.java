@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class SolutionsOCT19 {
@@ -861,6 +862,148 @@ public class SolutionsOCT19 {
         return maxLength;
 
     }
+
+    public boolean catDog(String str) {
+        int AO = 0;
+        int BO = 0;
+        str = str.replace("dog","$");
+        str = str.replace(, '$');
+        for (int i = 0; i < str.length(); i++ ) {
+            if(str.charAt(i) == '|') AO++;
+            if(str.charAt(i) == '$') BO++;
+        }
+
+        return (AO==BO);
+    }
+
+    public boolean endOther(String a, String b) {
+        String longer = " ";
+        String shorter = " ";
+       if (a.length() > b.length()) {
+           longer = a;
+           shorter = b;
+       } else {
+           longer = b;
+           shorter = a;
+       }
+
+       return(shorter.equalsIgnoreCase(longer.substring(longer.length()-shorter.length(), longer.length())));
+
+    }
+
+    public boolean xyzThere(String str) {
+        for (int i = 0; i< str.length()-3; i++ ){
+            if(str.substring(i, i+3).matches(".xyz")) return false;
+            if(str.substring(i, i+3).matches("xyz")) return true;
+        }
+        return false;
+
+    }
+
+    public boolean bobThere(String str) {
+        for (int i = 0; i < str.length()-2; i++) {
+            if(str.substring(i, i+3).matches("b(\\w)b")) return true;
+        }
+        return false;
+    }
+
+    public boolean xyBalance(String str) {
+        for(int i = 0; i< str.length(); i++){
+            if(str.charAt(i) == 'x') {
+                if  (str.substring(i+1, str.length()).contains("y")){
+                    continue;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public String mixString(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        String longer;
+        String shorter;
+        if(a.length() > b.length()){
+            longer = a;
+            shorter = b;
+        } else {
+            longer = b;
+            shorter = a;
+        }
+        for (int i = 0; i < shorter.length(); i++) {
+            sb.append(a.charAt(i));
+            sb.append(b.charAt(i));
+        }
+        sb.append(longer.substring(shorter.length()));
+        return sb.toString();
+
+    }
+
+    public String repeatEnd(String str, int n) {
+        StringBuilder sb = new StringBuilder();
+        String sub = str.substring(str.length() - n);
+        for(int i = 0; i < n; i++) {
+            sb.append(sub);
+        }
+        return sb.toString();
+
+    }
+
+    public String repeatFront(String str, int n) {
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(str.substring(0,n-i));
+        }
+        return sb.toString();
+
+    }
+
+    public String repeatSeparator(String word, String sep, int count) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < count -1 ; i++) {
+            sb.append(word+sep);
+        }
+        if(count>0) sb.append(word);
+        return sb.toString();
+
+    }
+    public int countYZ(String str) {
+        int count= 0;
+        for(int i = 0; i< str.length(); i++) {
+            if (str.charAt(i) == 'y' || str.charAt(i) == 'z' || str.charAt(i) == 'Y' || str.charAt(i) == 'Z') {
+                if(i==str.length()-1){
+                    count++;
+                    break;
+                }
+                if(!Character.isLetter(str.charAt(i+1))) count++;
+            }
+        }
+        return count;
+
+    }
+
+    public boolean lastDigit(int a, int b) {
+        return (a% 10 == b%10);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
