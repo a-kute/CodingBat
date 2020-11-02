@@ -1,8 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SolutionsOCT19 {
     public String stringBits(String str) {
@@ -988,6 +985,27 @@ public class SolutionsOCT19 {
         return (a% 10 == b%10);
     }
 
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        ArrayList<Integer> result = new ArrayList<>();
+        for (int a : nums1) {
+            result.add(a);
+        }
+        for (int a : nums2) {
+            result.add(a);
+        }
+        int size = result.size();
+        Collections.sort(result);
+        if(result.size()%2 == 0) {
+            int total = result.get(size/2 - 1) +result.get(size/2);
+            return total/2;
+        }
+        return result.get(size/2);
+
+
+
+
+    }
+
 
 
 
@@ -1028,7 +1046,10 @@ public class SolutionsOCT19 {
 
         //System.out.println(Integer.MAX_VALUE);
 
-        System.out.println(sol.maxMirror(hi));
+
+
+
+
 
 
 
