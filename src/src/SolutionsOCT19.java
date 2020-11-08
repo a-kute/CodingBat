@@ -1000,11 +1000,297 @@ public class SolutionsOCT19 {
             return total/2;
         }
         return result.get(size/2);
+    }
 
+    public String endUp(String str) {
+        if(str.length()<=3) return str.toUpperCase();
+        StringBuilder sb = new StringBuilder();
+        sb.append(str.substring(0,str.length()-3));
+        sb.append(str.substring(str.length()-3).toUpperCase());
+        return sb.toString();
+
+    }
+
+    public String everyNth(String str, int n) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i <str.length(); i+=n) {
+            sb.append(str.charAt(i));
+        }
+        return sb.toString();
+
+    }
+
+    public String front3(String str) {
+        if(str.length()<=3) return str+str+str;
+        return str.substring(0,3) + str.substring(0,3)+str.substring(0,3);
+
+    }
+
+    public boolean unlucky1(int[] nums) {
+        if(nums.length==0 || nums.length==1) return false;
+
+        if (nums[0] == 1) {
+            if (nums[1] == 3) return true;
+        }
+        if (nums[1] == 1) {
+            if (nums[2] == 3) return true;
+        }
+        if (nums[nums.length-2] == 1) {
+            if (nums[nums.length-1] == 3) return true;
+        }
+       return false;
 
 
 
     }
+
+    public int[] make2(int[] a, int[] b) {
+        int[] result = new int[2];
+        if (a.length == 2) return a;
+        if (a.length < 2) {
+            if (a.length!=0)  {
+                result[0] = a[0];
+                result[1] = b[0];
+                return  result;
+            } else {
+                result[0] = b[0];
+                result[1] = b[1];
+                return  result;
+
+            }
+        } else {
+            result[0] = a[0];
+            result[1] = a[1];
+            return  result;
+        }
+
+
+    }
+
+    public int[] front11(int[] a, int[] b) {
+        int aL = a.length;
+        int bL = b.length;
+        if(aL>0 && bL >0) {
+            return new int[] {a[0],b[0]};
+        }
+        if(aL>0 && bL ==0) {
+            return new int[] {a[0]};
+        }
+        if(aL==0 && bL >0) {
+            return new int[] {b[0]};
+        }
+        return  new int[]{};
+
+    }
+
+    public int[] frontPiece(int[] nums) {
+        if (nums.length < 2) return nums;
+        return new int[] {nums[0],nums[1]};
+
+    }
+
+    public String withoutString(String base, String remove) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < base.length(); i++) {
+            if(i<base.length()-remove.length()+1 &&base.substring(i,i+remove.length()).equalsIgnoreCase(remove)) {
+                i = i + remove.length()-1;
+
+            } else {
+                result.append(base.charAt(i));
+            }
+
+        }
+        return result.toString();
+
+    }
+
+    public boolean equalIsNot(String str) {
+        int isAppears = 0;
+        int notAppears = 0;
+
+        for(int i = 0; i < str.length();i ++) {
+            str = str.replace("is","_");
+            str = str.replace("not","|");
+            if(str.charAt(i) == '_') isAppears ++;
+            if(str.charAt(i) == '|') notAppears ++;
+        }
+
+        return isAppears == notAppears;
+
+
+    }
+
+    public boolean gHappy(String str) {
+
+        for(int i =0; i< str.length(); i++) {
+            if(i == 0) {
+                if(str.charAt(i) == 'g') {
+                    if(str.length() == 1) return false;
+                    if(!(str.charAt(i+1)== 'g')) return false;
+                    continue;
+                }
+            }
+            if(i == str.length() -1 ){
+                if(str.charAt(i) == 'g') {
+                    if(!(str.charAt(i-1)== 'g')) return false;
+                    continue;
+                }
+            }
+            if(str.charAt(i) == 'g') {
+                if(!(str.charAt(i-1)=='g' || str.charAt(i+1)== 'g')) return false;
+            }
+        }
+        return true;
+
+    }
+
+    public int countTriple(String str) {
+        int counter = 0;
+
+        for(int i = 0; i < str.length()-2; i++) {
+            char current = str.charAt(i);
+            if(str.charAt(i+1) == current && str.charAt(i+2) == current) counter ++;
+        }
+        return counter;
+
+    }
+
+    public int sumDigits(String str) {
+        int sum= 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            if(Character.isDigit(str.charAt(i))) {
+
+
+                sum += Integer.parseInt(str.substring(i, i + 1));
+            }
+
+
+        }
+        return sum;
+
+    }
+
+    public String theEnd(String str, boolean front) {
+        if(front) {
+            return str.substring(0,1);
+        } else {
+            return str.substring(str.length()-1, str.length());
+        }
+
+
+    }
+
+    public String withouEnd2(String str) {
+
+        if(str.length() < 1) return str;
+        if(str.length() == 1) return "";
+        return str.substring(1,str.length()-1);
+
+    }
+
+    public String middleTwo(String str) {
+
+        return str.substring(str.length()/2-1,str.length()/2+1);
+
+    }
+
+    public boolean endsLy(String str) {
+        if(str.lastIndexOf("ly") == -1) return false;
+        return (str.lastIndexOf("ly") == str.length()-2);
+
+    }
+
+    public String nTwice(String str, int n) {
+        String lastSub = str.substring(str.length()-n);
+        return str.substring(0,n) + lastSub;
+
+    }
+    public String twoChar(String str, int index) {
+        if((index > str.length()-2)|| index < 0) return str.substring(0,2);
+        return str.substring(index, index + 2);
+
+    }
+
+    public String middleThree(String str) {
+
+        return str.substring(str.length()/2 -1 ,str.length()/2+2);
+
+    }
+
+    public boolean hasBad(String str) {
+        return (str.indexOf("bad") == 0 ||str.indexOf("bad") == 1);
+
+    }
+
+    public String atFirst(String str) {
+        if(str.length() == 0) return "@@";
+        if(str.length() == 1) return str + "@";
+        return str.substring(0,2);
+
+    }
+
+    public String lastChars(String a, String b) {
+        a = a.length()>0 ? a.substring(0,1) : "@";
+        b = b.length()>0 ? b.substring(b.length()-1,b.length()) : "@";
+        return a+b;
+
+    }
+
+    public boolean dividesSelf(int n) {
+        int a = n;
+
+        while(a>0) {
+            int current = a%10;
+            if(current == 0) return false;
+            if(n%current != 0) return false;
+            a = a/10;
+        }
+        return true;
+
+    }
+
+    public int[] copyEvens(int[] nums, int count) {
+        int [] result = new int[count];
+        int location = 0;
+        for (int i = 0 ; i < nums.length; i++) {
+            if(count == location) return result;
+            if(nums[i]%2 == 0) {
+                result[location] = nums[i];
+                location++;
+            }
+        }
+        return result;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
