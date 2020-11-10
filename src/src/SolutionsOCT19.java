@@ -1266,6 +1266,65 @@ public class SolutionsOCT19 {
 
     }
 
+    public String conCat(String a, String b) {
+        if (a.length() == 0 || b.length()==0) return a + b;
+        if (a.charAt(a.length()-1) == b.charAt(0)) {
+            return a.substring(0,a.length()) + b.substring(1);
+        }
+        return a + b;
+
+    }
+
+    public String lastTwo(String str) {
+        if (str.length()<2) return str;
+        if (str.length() == 2) return str.substring(1) + str.substring(0,1);
+        return str.substring(0,str.length()-2) + str.substring(str.length()-1) + str.substring(str.length()-2,str.length()-1);
+
+    }
+
+    public String seeColor(String str) {
+        if(str.indexOf("blue") == 0) return "blue";
+        if(str.indexOf("red") == 0) return "red";
+        return "";
+
+    }
+
+    public boolean frontAgain(String str) {
+        if (str.length() <  2) return false;
+        return (str.charAt(0) == str.charAt(str.length()-2) && str.charAt(1) == str.charAt(str.length()-1));
+
+    }
+
+    public String minCat(String a, String b) {
+        int min = Math.min(a.length(),b.length());
+        return (a.substring(a.length()-min,a.length()) + b.substring(b.length()-min,b.length()));
+
+    }
+
+    public String extraFront(String str) {
+        if (str.length() < 3) return str+str+str;
+        return str.substring(0,2) + str.substring(0,2) + str.substring(0,2);
+
+    }
+
+    public String without2(String str) {
+        if(str.length() < 1) return "";
+        if (str.length() == 1) return str;
+        if(str.substring(0,2).equals(str.substring(str.length()-2,str.length()))) {
+            return str.substring(2);
+        }
+        return str;
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 
