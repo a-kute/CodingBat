@@ -1317,6 +1317,54 @@ public class SolutionsOCT19 {
 
     }
 
+    public String deFront(String str) {
+        if (str.charAt(0) == 'a') {
+            if (str.charAt(1) == 'b') return str;
+            return str.substring(0,1) + str.substring(2);
+        }
+        if (str.charAt(1) == 'b') return str.substring(1);
+        return str.substring(2);
+
+    }
+
+    public String startWord(String str, String word) {
+        if (word.length() == 1 && str.length() >0) return str.substring(0,1);
+        String part = word.substring(1);
+        if(str.indexOf(part) == 1) return str.substring(0,word.length());
+        return "";
+
+    }
+
+    public String withoutX(String str) {
+        if((str.length() == 1 && str.charAt(0) == 'x')|| str.length() == 0) return "";
+        int start = 0;
+        int last = str.length()-1;
+        if (str.charAt(0) == 'x') start = 1;
+        if (str.charAt(last) != 'x') last = str.length();
+        return str.substring(start,last);
+
+    }
+
+    public String withoutX2(String str) {
+        if (str.length()==0 ||(str.charAt(0) == 'x' &&str.length() ==1)) return "";
+        if(str.charAt(0) == 'x') {
+            if (str.charAt(1) == 'x') {
+                return str.substring(2);
+            }
+            return str.substring(1);
+        }
+        if (str.charAt(1) == 'x') {
+            return str.substring(0,1) + str.substring(2);
+        }
+        return str;
+
+
+    }
+
+
+
+
+
 
 
 
