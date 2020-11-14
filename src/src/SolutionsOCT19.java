@@ -1361,6 +1361,31 @@ public class SolutionsOCT19 {
 
     }
 
+    public int teaParty(int tea, int candy) {
+        if (tea < 5 || candy < 5) return 0;
+        if (tea/2 >= candy) return 2;
+        if (candy/2 >= tea) return 2;
+        return 1;
+
+    }
+
+    public String fizzString(String str) {
+        if (str.charAt(0)=='f'){
+            if(str.charAt(str.length()-1) == 'b' ) {
+                return "FizzBuzz";
+            }
+            return "Fizz";
+        }
+        if(str.charAt(str.length()-1) == 'b' ) {
+            return "Buzz";
+        }
+        return str;
+    }
+
+
+
+
+
 
 
 
