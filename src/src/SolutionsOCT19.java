@@ -1382,6 +1382,134 @@ public class SolutionsOCT19 {
         return str;
     }
 
+    public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
+        if(isAsleep) return false;
+        if (isMorning && isMom) return true;
+        if (!isMorning) return true;
+        return false;
+
+    }
+
+    public String fizzString2(int n) {
+        if (n%3 == 0) {
+            if (n%5 == 0) {
+                return "FizzBuzz!";
+            }
+            return "Fizz!";
+        }
+        if (n%5 == 0) return "Buzz!";
+        return n+ "!";
+
+    }
+
+    public boolean twoAsOne(int a, int b, int c) {
+        if (a + b ==c || a+c == b || b +c == a) return true;
+        return false;
+
+    }
+
+    public boolean inOrder(int a, int b, int c, boolean bOk) {
+        if (bOk) {
+            return (c > b);
+        }
+        return (c >b && a<b);
+
+    }
+
+    public boolean inOrderEqual(int a, int b, int c, boolean equalOk) {
+        if (equalOk) return (a <= b && b <= c);
+        return (a < b && b < c);
+
+    }
+
+    public boolean lastDigit(int a, int b, int c) {
+        if (a%10 == b%10 || a%10 == c%10 || b%10 ==c%10) return true;
+        return  false;
+
+    }
+    public boolean lessBy10(int a, int b, int c) {
+        return (Math.abs(a-b) >=10 || Math.abs(b-c) >=10 || Math.abs(a-c) >= 10 );
+
+    }
+
+    public int withoutDoubles(int die1, int die2, boolean noDoubles) {
+        if (noDoubles) {
+            if (die1 == die2) {
+                if (die1== 6 || die2 == 6) {
+                    return 1 + Math.min(die1,die2);
+                }
+                return 1 + die1 + die2;
+            }
+            return die1+die2;
+        }
+        return die1 + die2;
+
+    }
+
+    public int maxMod5(int a, int b) {
+        if (a ==b ) return 0;
+        if (a%5 == b%5) return Math.min(a,b);
+        return Math.max(a,b);
+
+    }
+
+    public int redTicket(int a, int b, int c) {
+        if (a == 2 && b ==2 && c ==2) return 10;
+        if (a == b && b == c) return 5;
+        if (a!= b && c!= a) return 1;
+        return 0;
+
+    }
+
+    public int greenTicket(int a, int b, int c) {
+        if (a==b && b == c && a ==c ) return 20;
+        if (a!=b && b != c && a !=c) return 0;
+        return 10;
+
+    }
+
+    public int blueTicket(int a, int b, int c) {
+        int sum1 = a + b;
+        int sum2 = b + c;
+        int sum3 = a + c;
+
+        if ( sum1 == 10 || sum2 == 10|| sum3 == 10) return 10;
+        if ( sum1-sum2 == 10 || sum1 - sum3 == 10) return 5;
+        return 0;
+
+    }
+
+    public boolean shareDigit(int a, int b) {
+        int digit1 = a/10;
+        int digit2 = a%10;
+        int digit3 = b/10;
+        int digit4 = b%10;
+        if (digit1 == digit3 || digit1 == digit4 || digit2 == digit3 || digit2 == digit4 ) return true;
+        return  false;
+
+    }
+
+    public int sumLimit(int a, int b) {
+        int sum = a+b;
+        if (String.valueOf(a).length() == String.valueOf(sum).length()) return sum;
+        return a;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
