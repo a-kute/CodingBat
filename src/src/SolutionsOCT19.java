@@ -1496,6 +1496,59 @@ public class SolutionsOCT19 {
 
     }
 
+    public int maxSubArray(int[] nums) {
+        int max = nums[0];
+        int tempSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+           if (nums[i] < 0) {
+               tempSum = 0;
+               continue;
+           }
+           tempSum += nums[i];
+           if (tempSum > max) max = tempSum;
+        }
+
+        return max;
+
+    }
+
+    public boolean prefixAgain(String str, int n) {
+        String prefix = str.substring(0, n);
+        return (str.substring(n).contains(prefix));
+
+    }
+
+    public boolean xyzMiddle(String str) {
+        int location = str.indexOf("xyz");
+        return (location  == str.length()-location+3 || location  == str.length()-location+2 || location  == str.length()-location+4);
+
+    }
+
+    public String getSandwich(String str) {
+        int indexOne = str.indexOf("bread");
+        int indexTwo = str.lastIndexOf("bread");
+        if (indexOne == indexTwo) return "";
+        return (str.substring(indexOne + 5, indexTwo));
+
+    }
+
+    public boolean sameStarChar(String str) {
+        for (int i = 1; i < str.length()-1; i++) {
+            if (str.charAt(i) == '*') {
+                if (str.charAt(i-1) == str.charAt(i+1)) continue;
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
+
+
+
+
+
 
 
 
@@ -1588,9 +1641,10 @@ public class SolutionsOCT19 {
     public static void main (String ... args){
        // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
-        int[] hi = {21, 22, 9, 8, 7, 6, 23, 24, 6, 7, 8, 9, 25, 7, 8, 9};
+        int[] hi = {-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(sol.maxSubArray(hi));
 
-        //System.out.println(Integer.MAX_VALUE);
+       
 
 
 
