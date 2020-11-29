@@ -1543,106 +1543,42 @@ public class SolutionsOCT19 {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public String oneTwo(String str) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0 ; i < str.length()/3; i++) {
+            String current = str.substring(i*3, i*3+3);
+            sb.append(current.substring(1));
+            sb.append(current.substring(0,1));
+        }
+        return sb.toString();
+
+    }
+
+    public String zipZap(String str) {
+        StringBuilder sb = new StringBuilder();
+        if (str.length()<3) return str;
+        for (int i = 0; i < str.length(); i++) {
+            if(i>str.length()-3){
+                sb.append(str.substring(i,i+1));
+                continue;
+            }
+            if(str.substring(i, i+3).matches("^z\\w{1}p$")) {
+                sb.append("zp");
+                i+=2;
+                continue;
+            } else {
+                sb.append(str.substring(i,i+1));
+            }
+        }
+        return sb.toString();
+
+    }
 
     public static void main (String ... args){
        // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
         int[] hi = {-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println(sol.maxSubArray(hi));
+        sol.zipZap("zzp");
 
        
 
