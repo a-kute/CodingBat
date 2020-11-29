@@ -1574,11 +1574,54 @@ public class SolutionsOCT19 {
 
     }
 
+    public String starOut(String str) {
+        StringBuilder sb = new StringBuilder();
+        if(str.length() ==1) {
+            if(str.charAt(0) == '*') return "";
+            else return str;
+        }
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) == '*') continue;
+            if (i == 0) {
+                if(str.charAt(i+1) != '*' ){
+                    sb.append(str.charAt(i));
+                    continue;
+                } else continue;
+            }
+            if (i == str.length()-1) {
+                if(str.charAt(i-1) != '*' ){
+                    sb.append(str.charAt(i));
+                    continue;
+                } else continue;
+            }
+            if(str.charAt(i+1) != '*' && str.charAt(i-1) != '*'){
+                sb.append(str.charAt(i));
+                continue;
+            }
+        }
+        return sb.toString();
+    }
+
+    public String plusOut(String str, String word) {
+        str = str.replace(word,"_");
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0 ; i< str.length(); i++) {
+            if(str.charAt(i) == '_') sb.append(word);
+            else sb.append("+");
+        }
+        return sb.toString();
+
+    }
+
+
+
+
+
     public static void main (String ... args){
        // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
         int[] hi = {-2,1,-3,4,-1,2,1,-5,4};
-        sol.zipZap("zzp");
+        sol.starOut("*a");
 
        
 
