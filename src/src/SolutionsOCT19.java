@@ -1519,10 +1519,31 @@ public class SolutionsOCT19 {
     }
 
     public boolean xyzMiddle(String str) {
-        int location = str.indexOf("xyz");
-        return (location  == str.length()-location+3 || location  == str.length()-location+2 || location  == str.length()-location+4);
+        String copy = str;
+        int index = 0;
+        while (str.indexOf("xyz",index) != -1) {
+            int location = str.indexOf("xyz",index);
+            index++;
+            int left = location;
+            int right = str.length() - (location + 3);
+            if(left == right || left - 1 == right || left == right - 1) return true;
+        }
+        return false;
 
     }
+
+    public String sameEnds(String string) {
+        String result = "";
+
+        for (int i = 1; i< string.length()/2+1; i++) {
+            if(string.substring(0,i).equals(string.substring(string.length()-i))) {
+                result = string.substring(0,i);
+            }
+        }
+        return result;
+
+    }
+
 
     public String getSandwich(String str) {
         int indexOne = str.indexOf("bread");
@@ -1613,6 +1634,31 @@ public class SolutionsOCT19 {
 
     }
 
+    public String wordEnds(String str, String word) {
+        StringBuilder sb = new StringBuilder();
+        int index = 0;
+        int lengthW = word.length();
+        for (int i = 0; i < str.length() - word.length()+1; i++) {
+            if(str.substring(i,lengthW+i).equals(word)) {
+                if(i == 0){
+                    if(str.length() == word.length()) {
+                        return "";
+                    }
+                    sb.append(str.charAt(i+lengthW));
+                } else if(i == str.length()-lengthW) {
+                    sb.append(str.charAt(i-1));
+                } else {
+                    sb.append(str.charAt(i-1));
+                    sb.append(str.charAt(i+lengthW));
+                }
+
+            }
+
+        }
+        return sb.toString();
+
+    }
+
 
 
 
@@ -1621,9 +1667,9 @@ public class SolutionsOCT19 {
        // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
         int[] hi = {-2,1,-3,4,-1,2,1,-5,4};
-        sol.starOut("*a");
+        sol.sameEnds("abXYab");
 
-       
+
 
 
 
