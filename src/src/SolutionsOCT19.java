@@ -1659,45 +1659,251 @@ public class SolutionsOCT19 {
 
     }
 
+    public int removeDuplicatess(int[] nums) {
+        int firstLoc = 1;
 
+        int result = 1;
 
+        for (int i = 0; i < nums.length-1; i++) {
+            int current = nums[i];
+            int next = nums[i+1];
 
+            if(next > current) {
+                result++;
+                nums[firstLoc] = next;
+                firstLoc++;
+            } else {
+                continue;
+            }
+        }
 
-    public static void main (String ... args){
-       // long startTime = System.nanoTime();
-        SolutionsOCT19 sol = new SolutionsOCT19();
-        int[] hi = {-2,1,-3,4,-1,2,1,-5,4};
-        sol.sameEnds("abXYab");
+        return result;
+    }
 
+    public int maxProfit(int[] prices) {
 
-
-
-
-
-
-
-
+//        int buyPrice = 0;
+//        int profit = 0;
+//        boolean possesion = false;
+//        for(int i = 0; i < prices.length-1; i++) {
+//            int today = prices[i];
+//            int tomorrow = prices[i+1];
+//            //choose to sell
+//            if(today > buyPrice && possesion == true) {
+//                profit = profit + today-buyPrice;
+//                possesion = false;
+//            }
+//
+//            //choose to buy
+//            if(tomorrow > today) {
+//                buyPrice = today;
+//                possesion = true;
+//            }
+//        }
+//        if(prices[prices.length-1] > buyPrice && possesion == true) {
+//            profit = profit + prices[prices.length-1] -buyPrice;
+//        }
+//        return profit;
+        int profit = 0;
+        for (int i  = 0 ; i < prices.length-1; i++) {
+            if (prices[i+1] > prices[i]) {
+                profit += prices[i+1]-prices[i];
+            }
+        }
+        return profit;
 
     }
+
+    public int[] rotate(int[] nums, int k) {
+        int current = nums[0];
+        int nextLocation = k-1 > nums.length ? k- nums.length : k;
+        int temp = nums[nextLocation];
+        int i = 0;
+        if(nums.length ==1) return nums;
+        if(nums.length %2 !=0) {
+            while (nextLocation != 0) {
+
+                nums[nextLocation] = current;
+                current = temp;
+                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+                temp = nums[nextLocation];
+
+            }
+            nums[nextLocation] = current;
+            current = temp;
+            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+            temp = nums[nextLocation];
+        } else {
+            while (nextLocation != 0) {
+
+                nums[nextLocation] = current;
+                current = temp;
+                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+                temp = nums[nextLocation];
+
+            }
+            nums[nextLocation] = current;
+            current = temp;
+            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+            temp = nums[nextLocation];
+             current = nums[1];
+             nextLocation = k + 1> nums.length-1 ? k+1- nums.length : k+1;
+             temp = nums[nextLocation];
+
+            while (nextLocation != 1) {
+
+                nums[nextLocation] = current;
+                current = temp;
+                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+                temp = nums[nextLocation];
+
+            }
+            nums[nextLocation] = current;
+            current = temp;
+            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+            temp = nums[nextLocation];
+        }
+        return nums;
+
+    }
+
+    public String cipherText(String cipher, String key) {
+
+        StringBuilder sb = new StringBuilder();
+        StringBuilder keys = new StringBuilder(key);
+
+        for (int i = 0; i < cipher.length(); i++) {
+
+            int charac = cipher.charAt(i) - keys.charAt(i);
+            char next;
+            if (charac < 0 ) {
+                 next = (char) (cipher.charAt(i) - keys.charAt(i) + 'z'+1);
+            } else {
+                 next = (char) (cipher.charAt(i) - keys.charAt(i) + 'a');
+            }
+            sb.append(next);
+            keys.append(next);
+
+        }
+        return sb.toString();
+    }
+
+    public boolean containsDuplicate(int[] nums) {
+
+//        Set<Integer> set = new HashSet<>();
+//        for (Integer i : nums) {
+//            set.add(i);
+//        }
+//        return set.size() != nums.length;
+
+        Set<Integer> set = new HashSet<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            set.add(nums[i]);
+            if (set.size() != i+1) return true;
+        }
+        return false;
+
+    }
+
+    public int singleNumber(int[] nums) {
+
+        Set<Integer> set = new HashSet<>();
+        for(int i = 0; i < nums.length; i++) {
+            if(!set.add(nums[i])) set.remove(nums[i]);
+        }
+        return (int)set.toArray()[0];
+
+    }
+
+    public int[] intersect(int[] nums1, int[] nums2) {
+
+        int[] small = nums1.length > nums2.length ? nums2 : nums1;
+        int[] large = nums1.length > nums2.length ? nums1 : nums2;
+
+
+        Map<Integer,Integer> map = new HashMap<>();
+        for (Integer i : large) {
+            if (map.get(i) == null) {
+                map.put(i,1);
+            } else {
+                map.put(i,map.get(i) +1);
+            }
+        }
+
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for (Integer i : small) {
+            if (map.get(i) == null) {
+                continue;
+            } else {
+                if(map.get(i) == 0) continue;
+
+                map.put(i,map.get(i) -1);
+                list.add(i);
+            }
+        }
+
+
+        int[] result = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
+        }
+
+        return result;
+    }
+
+    public int[] plusOne(int[] digits) {
+
+        int length = digits.length;
+
+
+        for(int i = length-1; i>-1; i--){
+            if(digits[i] != 9 ) {
+                digits[i] += 1;
+                return digits;
+            } else {
+                if (i== 0) {
+                    int[] result = new int[length+1];
+                    result[0] = 1;
+                    return result;
+                }
+                digits[i] = 0;
+            }
+        }
+        return digits;
+    }
+
+    public int[] moveZeroes(int[] nums) {
+    int count = 0;
+    int nextLocation = 0;
+
+    for(int i = 0; i < nums.length; i++) {
+        if(nums[i] != 0) {
+            count++;
+            nums[nextLocation] = nums[i];
+            nextLocation++;
+        }
+    }
+    for(int i = count; i < nums.length; i++) {
+        nums[i] = 0;
+    }
+    return nums;
+    }
+
+
+
+
+
+
+    public static void main (String[] args){
+       // long startTime = System.nanoTime();
+        SolutionsOCT19 sol = new SolutionsOCT19();
+
+        int[] a = {9,9};
+        int[] b = {0,1,0,3,12};
+
+        System.out.println(Arrays.toString(sol.moveZeroes(b)));
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
