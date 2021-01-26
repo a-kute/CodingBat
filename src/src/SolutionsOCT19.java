@@ -1714,56 +1714,120 @@ public class SolutionsOCT19 {
 
     }
 
-    public int[] rotate(int[] nums, int k) {
+//    public int[] rotate(int[] nums, int k) {
+//        int current = nums[0];
+//        int nextLocation = k-1 > nums.length ? k- nums.length : k;
+//        int temp = nums[nextLocation];
+//        int i = 0;
+//        if(nums.length ==1) return nums;
+//        if(nums.length %2 !=0) {
+//            while (nextLocation != 0) {
+//
+//                nums[nextLocation] = current;
+//                current = temp;
+//                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+//                temp = nums[nextLocation];
+//
+//            }
+//            nums[nextLocation] = current;
+//            current = temp;
+//            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+//            temp = nums[nextLocation];
+//        } else {
+//            while (nextLocation != 0) {
+//
+//                nums[nextLocation] = current;
+//                current = temp;
+//                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+//                temp = nums[nextLocation];
+//
+//            }
+//            nums[nextLocation] = current;
+//            current = temp;
+//            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+//            temp = nums[nextLocation];
+//             current = nums[1];
+//             nextLocation = k + 1> nums.length-1 ? k+1- nums.length : k+1;
+//             temp = nums[nextLocation];
+//
+//            while (nextLocation != 1) {
+//
+//                nums[nextLocation] = current;
+//                current = temp;
+//                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+//                temp = nums[nextLocation];
+//
+//            }
+//            nums[nextLocation] = current;
+//            current = temp;
+//            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
+//            temp = nums[nextLocation];
+//        }
+//        return nums;
+//
+//    }
+
+    public void rotate(int[] nums, int k) {
+        int length = nums.length;
+        if(length==1) return;
+        if(k == length) return;
+        if(k>length) k = k-length;
+        int iterations = length%2==0 ? 1 : 2;
         int current = nums[0];
-        int nextLocation = k-1 > nums.length ? k- nums.length : k;
-        int temp = nums[nextLocation];
-        int i = 0;
-        if(nums.length ==1) return nums;
-        if(nums.length %2 !=0) {
-            while (nextLocation != 0) {
+        iterations = k==1 ? 2 : iterations;
+        boolean second = iterations==1 ? true : false;
+        int location = k > length ? k+1-length : k;
+        int limit = second ? length/2:length;
+        limit = k==1? length: limit;
 
-                nums[nextLocation] = current;
-                current = temp;
-                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
-                temp = nums[nextLocation];
+        while (iterations != 3) {
 
-            }
-            nums[nextLocation] = current;
-            current = temp;
-            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
-            temp = nums[nextLocation];
-        } else {
-            while (nextLocation != 0) {
-
-                nums[nextLocation] = current;
-                current = temp;
-                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
-                temp = nums[nextLocation];
+            if(iterations==2 && second) {
+                current = nums[1];
+                location = k+1 > length ? k+2-length : k+1;
 
             }
-            nums[nextLocation] = current;
-            current = temp;
-            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
-            temp = nums[nextLocation];
-             current = nums[1];
-             nextLocation = k + 1> nums.length-1 ? k+1- nums.length : k+1;
-             temp = nums[nextLocation];
 
-            while (nextLocation != 1) {
+            int next = nums[location];
 
-                nums[nextLocation] = current;
-                current = temp;
-                nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
-                temp = nums[nextLocation];
-
+            for(int i = 0; i < limit;i++) {
+                nums[location] = current;
+                current = next;
+                location = k+location >= length ? k+location-length : k+location;
+                next = nums[location];
             }
-            nums[nextLocation] = current;
-            current = temp;
-            nextLocation = nextLocation + k > nums.length - 1 ? nextLocation + k - nums.length : nextLocation + k;
-            temp = nums[nextLocation];
+            iterations++;
+
         }
-        return nums;
+        return;
+    }
+
+    public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+        int[]first = new int[A.length+B.length];
+        int[]second = new int[C.length+D.length];
+        int counter = 0;
+        for(int i = 0; i < A.length; i++) {
+            for (int j = 0; j < B.length; j++) {
+                first[counter] = A[i]+B[j];
+                counter++;
+            }
+        }
+        int aMax = counter;
+        counter = 0;
+        for(int i = 0; i < C.length; i++) {
+            for (int j = 0; j < D.length; j++) {
+                second[counter] = C[i]+D[j];
+                counter++;
+            }
+        }
+        int bMax = counter;
+        counter = 0;
+        for (int i = 0; i < aMax; i++) {
+            for(int j = 0; j < bMax; j++) {
+                if(first[i]==-1*second[j]) counter++;
+            }
+        }
+        return counter;
 
     }
 
@@ -1820,8 +1884,6 @@ public class SolutionsOCT19 {
 
         int[] small = nums1.length > nums2.length ? nums2 : nums1;
         int[] large = nums1.length > nums2.length ? nums1 : nums2;
-
-
         Map<Integer,Integer> map = new HashMap<>();
         for (Integer i : large) {
             if (map.get(i) == null) {
@@ -1830,8 +1892,6 @@ public class SolutionsOCT19 {
                 map.put(i,map.get(i) +1);
             }
         }
-
-
         ArrayList<Integer> list = new ArrayList<>();
         for (Integer i : small) {
             if (map.get(i) == null) {
@@ -1843,8 +1903,6 @@ public class SolutionsOCT19 {
                 list.add(i);
             }
         }
-
-
         int[] result = new int[list.size()];
         for (int i = 0; i < list.size(); i++) {
             result[i] = list.get(i);
@@ -1891,6 +1949,122 @@ public class SolutionsOCT19 {
     return nums;
     }
 
+    public int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i = 0; i < nums.length; i++) {
+            map.put(nums[i],i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int goal = target - nums[i];
+            if(map.containsKey(goal) && map.get(goal) != i) {
+                result[0] = i;
+                result[1] = map.get(goal);
+            }
+        }
+
+        return result;
+    }
+
+//    public List<List<Integer>> threeSum(int[] nums) {
+//        int length = nums.length;
+//        HashMap<Integer,ArrayList<Integer>> map = new HashMap<>();
+//        int go = (2*length)/3;
+//
+//        for(int i =0,j = 1; j < go; i++,j++) {
+//            map.put(map.getOrDefault()
+//        }
+//
+//    }
+
+    public int lengthOfLongestSubstring(String s) {
+
+        HashSet<Character> set = new HashSet<>();
+        char[] charArray = s.toCharArray();
+        int max = 0;
+        int current = 0;
+        for(int i = 0; i < charArray.length; i++) {
+            if (!set.add(charArray[i])) {
+
+                if (set.size() > max) {
+                    max = set.size();
+                    set.clear();
+                    set.add(charArray[i]);
+                } else  {
+                    set.clear();
+                    set.add(charArray[i]);
+                }
+            }else if (set.size() > max) {
+                max = set.size();
+            }
+        }
+        return max;
+    }
+
+    public void reverseString(char[] s) {
+
+        for(int i = 0, j = s.length-1; i<j && j-i != 0;i++,j--) {
+            char uno = s[i];
+            char dos = s[j];
+            s[i] = dos;
+            s[j] = uno;
+        }
+    }
+
+    public int firstUniqChar(String s) {
+        HashMap<Character, Integer> set = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            set.put(s.charAt(i), set.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            char current = s.charAt(i);
+            if (set.get(current) == 1) return i;
+        }
+        return -1;
+    }
+    public boolean isAnagram(String s, String t) {
+        int[] uno = new int[26];
+        int[] dos = new int[26];
+        if(s.length()!=t.length()) return false;
+
+        for(int i = 0; i< s.length(); i++) {
+            uno[s.charAt(i)-'a']++;
+            dos[t.charAt(i)-'a']++;
+        }
+        return Arrays.equals(uno,dos);
+    }
+
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] result = new int[nums1.length+m];
+        int counter1 = 0;
+        int counter2 = 0;
+        boolean hey = true;
+        boolean heya = true;
+
+        for(int i = 0; counter1<nums1.length && counter2<nums2.length;i++) {
+            int uno = nums1[counter1];
+            int dos = nums2[counter2];
+
+                if (uno > dos) {
+                    result[i] = dos;
+                    counter2++;
+                } else {
+                    result[i] = uno;
+                    counter1++;
+                }
+                if(counter1==nums1.length) {
+                    hey = false;
+                }
+                if(counter1==nums1.length) {
+                    heya = false;
+                }
+
+        }
+        if(!hey) {
+            
+        }
+    }
+
 
 
 
@@ -1900,10 +2074,18 @@ public class SolutionsOCT19 {
        // long startTime = System.nanoTime();
         SolutionsOCT19 sol = new SolutionsOCT19();
 
-        int[] a = {9,9};
-        int[] b = {0,1,0,3,12};
 
-        System.out.println(Arrays.toString(sol.moveZeroes(b)));
+        int[]A = {1,2};
+        int[]B = {-2,-1};
+        int[]C = {-1,2};
+        int[]D = {0,2};
+
+        char[] a = {'h','e','l','l','o'};
+        sol.reverseString(a);
+
+
+
+        System.out.println(sol.firstUniqChar("aadadaad"));
     }
 }
 
