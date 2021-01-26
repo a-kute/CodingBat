@@ -2065,6 +2065,41 @@ public class SolutionsOCT19 {
         }
     }
 
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+        int sum = 0;
+        int[] result = new int[queries.length];
+        for (int i: A) {
+            if(i%2 ==0) sum+=i;
+        }
+        for(int i = 0; i< queries.length; i++) {
+            int loc = queries[i][1];
+            int change = queries[i][0];
+            if(A[loc]%2 == 0) sum -= A[loc];
+            A[loc] = A[loc]+change;
+            if(A[loc]%2 == 0) sum+= A[loc];
+            result[i] = sum;
+        }
+        return result;
+
+    }
+
+    public int pivotIndex(int[] nums) {
+        int sum = 0;
+
+        for(int i = 0; i< nums.length; i++) {
+            sum+=nums[i];
+        }
+
+        int runningSum = 0;
+        for(int i  = 0; i < nums.length-1; i++) {
+            runningSum+=nums[i];
+            int opposit = sum-runningSum;
+            if(runningSum+runningSum+nums[i+1] == opposit) return i+1;
+        }
+        return -1;
+
+    }
+
 
 
 
